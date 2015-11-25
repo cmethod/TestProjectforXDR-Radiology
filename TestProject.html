@@ -1,0 +1,40 @@
+<head>
+  <title>TestProject</title>
+</head>
+
+<body style="background-color: ivory">
+  <h1 style="text-align: center; font-family: courier">Welcome!</h1>
+  {{> hello}}
+</body>
+
+<template name="hello">
+
+  <h4 style="text-align: center; font-family: courier">Here you can upload your own picture, <span title="double click it!">change its size</span>, and drag it around</h4>
+  <form class="url-form">
+    <div class="inputContainer" style="text-align: center;">
+      <input type="text" name="url" placeholder="paste your url" style="font-size: 3vw">
+      <input type="submit" value="submit url" style="font-size: 3vw">
+      <button id="remove-all-pictures" style=""> remove all </button>
+    </div>
+  </form>
+
+  <div class="allContentContainer" style="display: flex">
+  <div style="display: flex; flex-wrap: wrap;">
+    {{#each pictures}} {{>alreadyLoaded}} {{/each}}
+  </div>
+  <div style="text-align: center;">
+    <h4 style="text-align: center; font-family: courier"> here you can change the blue channel of this image to 100.</h4>
+  <canvas id="canvas" width=250 height=100 style="border: 3px solid red"></canvas>
+  <input type="button" id="button" value="TRANSFORM"/>
+  <input type="button" id="undoButton" value="UNDO"/>
+    <p style="text-align: center; font-family: courier; width: 40vw"> unfortunately, you can only use images hosted on a server which enables Cross Origin Resource Sharing. Otherwise, the image cannot be accessed through "anonymous" Cross Origin. Without this "anonymous" attribute, the image cannot transform due to being tainted. This can be worked around by storing the image in your own CORS-enabled server first, before accessing it through this webpage.</p>
+
+</div>
+</div>
+</template>
+
+<template name="alreadyLoaded">
+  <div class="alreadySubmitted" style="width:25vw; height:25vw" id="alreadySubmittedContainer">
+    <img id="picture" class="edit" src="{{newPicture}}" style="width:25vw; height:25vw">
+  </div>
+</template>
